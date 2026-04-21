@@ -53,6 +53,7 @@ module AllStak
           description: description,
           service: @config.service_name,
           environment: @config.environment || "",
+          release: (@config.respond_to?(:release) ? @config.release : nil) || "",
           tags: tags || {},
           start_time_millis: (Time.now.to_f * 1000).to_i,
           on_finish: method(:on_span_finish)
@@ -107,7 +108,7 @@ module AllStak
       attr_reader :trace_id, :span_id
 
       def initialize(trace_id:, span_id:, parent_span_id:, operation:, description:,
-                     service:, environment:, tags:, start_time_millis:, on_finish:)
+                     service:, environment:, tags:, start_time_millis:, on_finish:, release: "")
         @trace_id = trace_id
         @span_id = span_id
         @parent_span_id = parent_span_id
@@ -115,6 +116,7 @@ module AllStak
         @description = description
         @service = service
         @environment = environment
+        @release = release
         @tags = tags.dup
         @start_time_millis = start_time_millis
         @end_time_millis = nil
@@ -159,6 +161,7 @@ module AllStak
           endTimeMillis: end_ms,
           service: @service,
           environment: @environment,
+          release: @release,
           tags: @tags
         }
       end

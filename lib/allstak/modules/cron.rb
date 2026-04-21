@@ -4,9 +4,10 @@ module AllStak
     class Cron
       PATH = "/ingest/v1/heartbeat".freeze
 
-      def initialize(transport, logger)
+      def initialize(transport, logger, config = nil)
         @transport = transport
         @logger = logger
+        @config = config
       end
 
       # Wrap a job in a block; heartbeat sent on exit.
@@ -34,6 +35,10 @@ module AllStak
         begin
           payload = { slug: slug, status: status, durationMs: duration_ms }
           payload[:message] = message if message
+          if @config
+            payload[:environment] = @config.environment if @config.respond_to?(:environment) && @config.environment
+            payload[:release] = @config.release if @config.respond_to?(:release) && @config.release
+          end
           code, _ = @transport.post(PATH, payload)
           code == 202
         rescue Transport::AllStakAuthError

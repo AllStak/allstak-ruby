@@ -80,12 +80,35 @@ module AllStak
       @client&.capture_error(exception_class, message, **kw)
     end
 
+    # Cross-SDK parity with JS captureMessage / Python capture_message /
+    # Java captureMessage. Emits a string as an error-group entry at the
+    # given level. Safe no-op if the SDK is not configured.
+    def capture_message(message, level: "info", **kw)
+      @client&.capture_message(message, level: level, **kw)
+    end
+
     def set_user(**kw)
       @client&.set_user(**kw)
     end
 
     def clear_user
       @client&.clear_user
+    end
+
+    # Attach a tag that sticks to every future event.
+    # Cross-SDK parity with JS setTag / Python set_tag.
+    def set_tag(key, value)
+      @client&.set_tag(key, value)
+    end
+
+    def set_tags(pairs)
+      @client&.set_tags(pairs)
+    end
+
+    # Attach a custom context entry to every future event.
+    # Cross-SDK parity with JS/Python setContext.
+    def set_context(key, value)
+      @client&.set_context(key, value)
     end
 
     def log

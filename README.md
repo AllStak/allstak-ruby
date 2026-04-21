@@ -41,6 +41,41 @@ That is the whole setup. Every request, every unhandled exception, every
 ActiveRecord query, every outbound Net::HTTP call, and every trace are
 captured automatically.
 
+## Public API (cross-SDK consistent)
+
+Every method below is a module-level method on `AllStak`, matching the
+names used by the JS, Python, Java, Go, PHP, and .NET SDKs so docs carry
+across languages.
+
+```ruby
+AllStak.configure { |c| ... }                          # once at bootstrap
+
+AllStak.set_user(id: "42", email: "alice@example.com") # user context
+AllStak.clear_user
+
+AllStak.set_tag("service", "checkout")                 # sticky tag
+AllStak.set_tags(region: "us-east-1", tier: "web")     # bulk
+AllStak.set_context("deployment", "canary")            # sticky context
+
+AllStak.capture_exception(exc)                         # preferred for errors
+AllStak.capture_error("DomainError", "bad input")      # without a throwable
+AllStak.capture_message("hello", level: "info")        # plain string event
+
+AllStak.log.info("request started", metadata: {...})   # structured logs
+AllStak.tracing                                        # Tracing module
+AllStak.http                                           # HTTP monitor
+AllStak.database                                       # DB query monitor
+AllStak.cron.job("daily-report") { run_job }           # cron heartbeats
+
+AllStak.flush                                          # drain buffers
+AllStak.shutdown                                       # drain + close
+```
+
+`AllStak.capture_message`, `AllStak.set_tag`, and `AllStak.set_context`
+landed in 0.1.1 as cross-SDK parity additions. Older 0.1.0 code that only
+used `capture_exception` / `capture_error` keeps working — no breaking
+changes.
+
 ## Rails
 
 ```ruby

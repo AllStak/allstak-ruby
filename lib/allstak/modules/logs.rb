@@ -28,6 +28,7 @@ module AllStak
           message: message.to_s,
           service: service || @config.service_name,
           environment: @config.environment,
+          release: @config.respond_to?(:release) ? @config.release : nil,
           traceId: trace_id,
           spanId: span_id,
           requestId: request_id,
