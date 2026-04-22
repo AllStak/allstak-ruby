@@ -9,7 +9,7 @@ module AllStak
 
     def initialize
       @api_key         = ENV["ALLSTAK_API_KEY"].to_s
-      @host            = ENV["ALLSTAK_HOST"] || "http://localhost:8080"
+      @host            = ENV["ALLSTAK_HOST"] || "https://api.allstak.sa"
       @environment     = ENV["ALLSTAK_ENVIRONMENT"]
       @release         = ENV["ALLSTAK_RELEASE"]
       @service_name    = ENV["ALLSTAK_SERVICE"] || "ruby-service"

@@ -196,7 +196,7 @@ AllStak.flush
 | Option                    | Default                   | Notes |
 | ------------------------- | ------------------------- | ----- |
 | `api_key`                 | `ENV["ALLSTAK_API_KEY"]`  | Your `ask_live_...` key. |
-| `host`                    | `http://localhost:8080`   | Override with your AllStak ingest host. |
+| `host`                    | `https://api.allstak.sa`   | Override with your AllStak ingest host. |
 | `environment`             | `nil`                     | e.g. `"production"` |
 | `release`                 | `nil`                     | e.g. `"myapp@1.2.3"` |
 | `service_name`            | `"ruby-service"`          | Shown on spans and logs. |
