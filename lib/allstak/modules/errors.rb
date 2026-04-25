@@ -54,10 +54,16 @@ module AllStak
             level: level,
             environment: @config.environment,
             release: @config.release,
+            # Phase 3 — v2 ingest contract: top-level identity + frames.
+            sdkName:    @config.sdk_name,
+            sdkVersion: @config.sdk_version,
+            platform:   @config.platform,
+            dist:       @config.dist,
+            frames:     extract_structured_frames(exc),
             traceId: trace_id,
             user: (user || @current_user)&.to_h,
             requestContext: request_context&.to_h,
-            metadata: metadata,
+            metadata: @config.release_tags.merge(metadata || {}),
             breadcrumbs: crumbs
           }.compact
           payload.delete(:user)           if payload[:user]&.empty?
@@ -88,7 +94,7 @@ module AllStak
             traceId: trace_id,
             user: (user || @current_user)&.to_h,
             requestContext: request_context&.to_h,
-            metadata: metadata
+            metadata: @config.release_tags.merge(metadata || {})
           }.compact
           payload.delete(:user)           if payload[:user]&.empty?
           payload.delete(:requestContext) if payload[:requestContext]&.empty?
@@ -105,6 +111,25 @@ module AllStak
       def extract_frames(exc)
         return [] unless exc.backtrace.is_a?(Array)
         exc.backtrace.first(50)
+      end
+
+      # Phase 3 — v2 structured frames. Ruby's backtrace is "<file>:<line>:in `<fn>'"
+      # — split it into the wire shape so the dashboard can render real
+      # source paths. Falls back to nil when no backtrace is present.
+      def extract_structured_frames(exc)
+        return nil unless exc.backtrace.is_a?(Array)
+        out = []
+        exc.backtrace.first(50).each do |line|
+          if line =~ /^(.*):(\d+):in [`'](.+?)'/
+            out << {
+              filename: $1, absPath: $1,
+              function: $3, lineno: Integer($2),
+              inApp: !$1.include?('/gems/') && !$1.start_with?('<internal:'),
+              platform: 'ruby'
+            }
+          end
+        end
+        out.empty? ? nil : out
       end
     end
   end

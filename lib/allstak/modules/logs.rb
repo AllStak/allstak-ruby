@@ -34,7 +34,7 @@ module AllStak
           requestId: request_id,
           userId: user_id,
           errorId: error_id,
-          metadata: metadata
+          metadata: @config.release_tags.merge(metadata || {})
         }.compact
         @buffer.push(payload)
       end
