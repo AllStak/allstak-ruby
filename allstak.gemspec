@@ -4,11 +4,11 @@ Gem::Specification.new do |spec|
   spec.name          = "allstak"
   spec.version       = AllStak::VERSION
   spec.authors       = ["AllStak"]
-  spec.email         = ["sdk@allstak.dev"]
+  spec.email         = ["sdk@allstak.sa"]
 
   spec.summary       = "Official AllStak Ruby SDK — error tracking, logs, HTTP + ActiveRecord monitoring, tracing, and cron monitoring"
   spec.description   = "Production-ready Ruby SDK for AllStak observability: Rack/Rails middleware, ActiveRecord instrumentation, outbound HTTP capture, distributed tracing, cron monitoring, and structured logs."
-  spec.homepage      = "https://allstak.dev"
+  spec.homepage      = "https://allstak.sa"
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
 
@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"]   = "https://github.com/AllStak/allstak-ruby"
   spec.metadata["changelog_uri"]     = "https://github.com/AllStak/allstak-ruby/blob/main/CHANGELOG.md"
   spec.metadata["bug_tracker_uri"]   = "https://github.com/AllStak/allstak-ruby/issues"
-  spec.metadata["documentation_uri"] = "https://allstak.dev/docs/sdks/ruby"
+  spec.metadata["documentation_uri"] = "https://allstak.sa/docs/sdks/ruby"
   spec.metadata["rubygems_mfa_required"] = "true"
 
   spec.files = Dir[
