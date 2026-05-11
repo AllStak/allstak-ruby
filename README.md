@@ -3,7 +3,7 @@
 **Error tracking and logs for Ruby and Rails. Rack middleware auto-wires itself.**
 
 [![Gem Version](https://img.shields.io/gem/v/allstak.svg)](https://rubygems.org/gems/allstak)
-[![CI](https://github.com/allstak-io/allstak-ruby/actions/workflows/ci.yml/badge.svg)](https://github.com/allstak-io/allstak-ruby/actions)
+[![CI](https://github.com/AllStak/allstak-ruby/actions/workflows/ci.yml/badge.svg)](https://github.com/AllStak/allstak-ruby/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Official AllStak SDK for Ruby — captures exceptions, structured logs, HTTP requests, ActiveRecord queries, and distributed traces for Rack, Rails, and plain Ruby services.
@@ -131,7 +131,7 @@ end
 
 - Documentation: https://docs.allstak.sa
 - Dashboard: https://app.allstak.sa
-- Source: https://github.com/allstak-io/allstak-ruby
+- Source: https://github.com/AllStak/allstak-ruby
 
 ## License
 
