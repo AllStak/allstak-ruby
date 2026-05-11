@@ -13,9 +13,9 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 3.0.0"
 
   spec.metadata["homepage_uri"]      = spec.homepage
-  spec.metadata["source_code_uri"]   = "https://github.com/allstak-io/allstak-ruby"
-  spec.metadata["changelog_uri"]     = "https://github.com/allstak-io/allstak-ruby/blob/main/CHANGELOG.md"
-  spec.metadata["bug_tracker_uri"]   = "https://github.com/allstak-io/allstak-ruby/issues"
+  spec.metadata["source_code_uri"]   = "https://github.com/AllStak/allstak-ruby"
+  spec.metadata["changelog_uri"]     = "https://github.com/AllStak/allstak-ruby/blob/main/CHANGELOG.md"
+  spec.metadata["bug_tracker_uri"]   = "https://github.com/AllStak/allstak-ruby/issues"
   spec.metadata["documentation_uri"] = "https://allstak.dev/docs/sdks/ruby"
   spec.metadata["rubygems_mfa_required"] = "true"
 
